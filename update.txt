@@ -1,0 +1,3 @@
+This is the furthest I can go because I did not do the python part of boot.dev
+
+This is up to Docker Ch. 5.6

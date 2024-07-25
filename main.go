@@ -4,15 +4,18 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"os"
 	"time"
 )
+
+const portVar = "PORT"
 
 func main() {
 	m := http.NewServeMux()
 
 	m.HandleFunc("/", handlePage)
 
-	const addr = ":8080"
+	addr := fmt.Sprintf(":%s", os.Getenv(portVar))
 	srv := http.Server{
 		Handler:      m,
 		Addr:         addr,
@@ -24,7 +27,7 @@ func main() {
 	// has an unrecoverable error
 	fmt.Println("server started on ", addr)
 	err := srv.ListenAndServe()
-	log.Fatal(err)
+	log.Fatal("fatal, ", err)
 }
 
 func handlePage(w http.ResponseWriter, r *http.Request) {
